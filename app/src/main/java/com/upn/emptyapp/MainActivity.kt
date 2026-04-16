@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(innerPadding),
                     ) {
-                        var page by remember { mutableStateOf("home") }
+                        var page by remember { mutableStateOf("login") }
                         when (page) {
                             "login" -> LoginScreen(
                                 onClick = { page = "registration"},

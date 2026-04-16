@@ -27,14 +27,23 @@ import android.util.Patterns
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Icon
+import androidx.compose.runtime.LaunchedEffect
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.upn.emptyapp.viewmodels.UserViewModel
 
 @Composable
-fun LoginScreen(onClick: () -> Unit, onSuccess: () -> Unit) {
+fun LoginScreen(onClick: () -> Unit, onSuccess: () -> Unit, viewModel: UserViewModel = viewModel()) {
     var password by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var emailError by remember { mutableStateOf<String?>(null) }
     var passwordError by remember { mutableStateOf<String?>(null) }
     val context = LocalContext.current
+
+    LaunchedEffect(viewModel.isAuthenticated) {
+        if (viewModel.isAuthenticated ) {
+            onSuccess()
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -49,6 +58,13 @@ fun LoginScreen(onClick: () -> Unit, onSuccess: () -> Unit) {
         )
 
         Spacer(modifier = Modifier.height(32.dp))
+
+        if (viewModel.authError != "") {
+            Text(
+                text = viewModel.authError,
+                color = MaterialTheme.colorScheme.error,
+            )
+        }
 
         OutlinedTextField(
             value = email,
@@ -97,17 +113,17 @@ fun LoginScreen(onClick: () -> Unit, onSuccess: () -> Unit) {
                     emailError = "El email es requerido."
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     emailError = "Formato de email inválido."
-                } else if(!email.endsWith("gmail.com")) {
+                } /*else if(!email.endsWith("gmail.com")) {
                     emailError = "Solo se permite correos gmail.com"
-                }
+                }*/
 
                 if (password.isEmpty()) {
                     passwordError = "La contraseña es requerida."
                 }
 
                 if (emailError == null && passwordError == null) {
-                    Toast.makeText(context, "Login clicked", Toast.LENGTH_SHORT).show()
-                    onSuccess();
+                    viewModel.login(email, password);
+
                 }
             },
             modifier = Modifier.fillMaxWidth()
