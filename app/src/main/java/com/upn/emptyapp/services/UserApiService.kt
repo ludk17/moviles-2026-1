@@ -6,10 +6,10 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface UserApiService {
-    // [GET] https://69a788b72cd1d0552690e014.mockapi.io/usuarios
+    // [GET] https://69de35c8410caa3d47bac8c2.mockapi.io/usuarios
     @GET("/usuarios")
     suspend fun getAllUsers(): List<Usuario>
 
     @POST("/usuarios")
-    suspend fun create(@Body usuario: Usuario)
+    suspend fun createUser(@Body user: Usuario): Usuario
 }

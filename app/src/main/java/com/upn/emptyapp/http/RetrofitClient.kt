@@ -1,20 +1,17 @@
 package com.upn.emptyapp.http
 
+import com.upn.emptyapp.services.UserApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
+    private const val BASE_URL = "https://69de35c8410caa3d47bac8c2.mockapi.io"
 
-    private const val BASE_URL = "https://69a788b72cd1d0552690e014.mockapi.io"
-
-    val instance: Retrofit by lazy {
+    val instance: UserApiService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-    }
-
-    fun <T> getService(serviceClass: Class<T>): T {
-        return instance.create(serviceClass)
+            .create(UserApiService::class.java)
     }
 }
