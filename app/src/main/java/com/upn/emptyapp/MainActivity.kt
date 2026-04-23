@@ -30,6 +30,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.upn.emptyapp.ui.screens.HomeScreen
 import com.upn.emptyapp.ui.screens.LoginScreen
 import com.upn.emptyapp.ui.theme.EmptyAppTheme
@@ -39,33 +43,115 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            EmptyAppTheme {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                ) { innerPadding ->
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding),
-                    ) {
-                        var page by remember { mutableStateOf("login") }
-                        when (page) {
-                            "login" -> LoginScreen(
-                                onClick = { page = "registration"},
-                                onSuccess = {page = "home"}
-                            )
-                            "registration" -> RegistrationScreen(
-                                onClick = { page = "login" }
-                            )
-                            "home" -> HomeScreen()
-                        }
-                    }
+
+            val navController = rememberNavController()
+            NavHost(navController = navController, startDestination = "home") {
+                composable("home") { Home(navController) }
+                composable("screen_a") { ScreenA() }
+                composable("screen_b") { RegistrationScreen(onClick = {}) }
+                composable("screen_c/{key}") { entry ->
+                    val id = entry.arguments?.getString("key")
+                    ScreenC(id!!)
                 }
             }
         }
     }
 }
 
+@Composable
+fun Home(navController: NavHostController) {
+        EmptyAppTheme {
+            Scaffold(
+                modifier = Modifier.fillMaxSize(),
+            ) { innerPadding ->
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding),
+                ) {
+
+                    var name by remember { mutableStateOf("") };
+
+                    Column {
+                        Button(onClick = {
+                            navController.navigate("screen_a")
+                        }) {
+                            Text("Ir a Screen A")
+                        }
+
+                        Button(onClick = {navController.navigate("screen_b")}) {
+                            Text("Ir a Form")
+                        }
+
+                        OutlinedTextField(
+                            value = name,
+                            onValueChange = { name = it },
+                            label = { Text("Name") },
+                            modifier = Modifier.fillMaxWidth(),
+                            singleLine = true
+                        )
+
+                        Button(onClick = {
+                            navController.navigate("screen_c/$name")
+                        }) {
+                            Text("Ir a Screen C")
+                        }
+                    }
+                }
+            }
+        }
+}
+
+@Composable
+fun ScreenA() {
+    EmptyAppTheme {
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+        ) { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
+            ) {
+                Text("Screen A")
+            }
+        }
+    }
+}
+
+@Composable
+fun ScreenB() {
+    EmptyAppTheme {
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+        ) { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
+            ) {
+                Text("Screen B")
+            }
+        }
+    }
+}
+
+@Composable
+fun ScreenC(id: String) {
+    EmptyAppTheme {
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+        ) { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
+            ) {
+                Text("Screen C: $id")
+            }
+        }
+    }
+}
 
 @Composable
 fun RegistrationScreen(onClick: () -> Unit) {
