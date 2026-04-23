@@ -15,7 +15,14 @@ Cuando el usuario solicite un commit o se use esta skill, sigue estos pasos:
 - Ejecuta `git status` y `git diff --cached` (o `git diff` si nada está en stage) para entender qué ha cambiado.
 - Identifica el propósito de los cambios (nueva funcionalidad, corrección de errores, documentación, etc.).
 
-### 2. Generación del Mensaje de Commit
+### 2. Validación de Seguridad
+- Antes de proceder, escanea los cambios (`git diff`) en busca de palabras clave que indiquen posibles secretos: `password`, `token`, `secret`, `api_key`, `key`, `credenciales`.
+- **Si encuentras un posible secreto**:
+  - **NO** realices el commit.
+  - Notifica al usuario inmediatamente indicando el archivo y la línea sospechosa.
+  - Pregunta si la inclusión fue accidental o intencional. Solo procede si el usuario confirma explícitamente que es seguro.
+
+### 3. Generación del Mensaje de Commit
 Usa la nomenclatura de **Conventional Commits**: `<tipo>(<alcance>): <descripción>`
 
 - **Tipos permitidos**:
@@ -29,8 +36,8 @@ Usa la nomenclatura de **Conventional Commits**: `<tipo>(<alcance>): <descripci�
 - **Alcance (Scope)**: Opcional, describe la parte del código afectada (ej. `ui`, `model`, `api`).
 - **Descripción**: Un resumen corto y descriptivo en presente (ej. "crear archivo AGENTS.md").
 
-### 3. Ejecución de Comandos
-Debes ejecutar los siguientes comandos en orden:
+### 4. Ejecución de Comandos
+Debes ejecutar los siguientes comandos en orden solo después de que el mensaje haya sido generado y la seguridad validada:
 
 1. `git add .` (o archivos específicos si es necesario).
 2. `git commit -m "<mensaje generado>"`
@@ -39,5 +46,7 @@ Debes ejecutar los siguientes comandos en orden:
 ## Ejemplo de Uso
 Si el usuario dice "haz commit de la configuración", el agente debería:
 1. Ver que cambió `build.gradle`.
-2. Generar: `chore(config): actualizar dependencias de gradle`.
-3. Ejecutar `git add .`, `git commit ...` y `git push`.
+2. Verificar que no haya secretos expuestos.
+3. Generar: `chore(config): actualizar dependencias de gradle`.
+4. Ejecutar `git add .`, `git commit ...` y `git push`.
+
