@@ -42,6 +42,6 @@ El objetivo es permitir a los usuarios:
 
 ## Instrucciones para Agentes de IA
 - **Migración**: Refactorizar los archivos de ejemplo existentes (como `Usuario.kt`, `UserViewModel.kt`) o reemplazarlos con versiones centradas en mascotas.
-- **UI/UX**: Priorizar un diseño amigable y visualmente atractivo, adecuado para una aplicación de adopción de mascotas.
+- **UI/UX**: Priorizar un diseño amigable y visualmente atractivo, siguiendo el sistema de diseño definido en [DESIGN.md](file:///Users/ludk/Projects/UPN/EmptyApp/DESIGN.md).
 - **Buenas Prácticas**: Utilizar patrones modernos de desarrollo Android (Compose, Coroutines, StateFlow).
 - **Documentación**: Mantener este archivo `AGENTS.md` y documentar cualquier decisión arquitectónica importante.

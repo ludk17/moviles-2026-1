@@ -1,6 +1,5 @@
 package com.upn.emptyapp.http
 
-import com.upn.emptyapp.services.UserApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -17,9 +16,5 @@ object RetrofitClient {
 
     fun <E> getService(serviceClass: Class<E>): E {
         return instance.create(serviceClass)
-    }
-
-    fun userApiService(): UserApiService  {
-        return instance.create(UserApiService::class.java)
     }
 }

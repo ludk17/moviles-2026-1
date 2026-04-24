@@ -1,5 +1,5 @@
 ---
-name: Git Commit & Push
+name: commit
 description: Automatiza el proceso de staging, commit con mensajes descriptivos (Conventional Commits) y push de los cambios.
 ---
 
