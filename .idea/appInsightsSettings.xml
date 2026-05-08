@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.upn.emptyapp" />
+                  <option name="mobileSdkAppId" value="1:65879134724:android:73bc6240f7e35c118b1b51" />
+                  <option name="projectId" value="movilesa-17775" />
+                  <option name="projectNumber" value="65879134724" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

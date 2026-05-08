@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.upn.emptyapp.ui.screens.ListaFirebaseScreen
 import com.upn.emptyapp.ui.screens.pages.LoginPage
 
 class MainActivity : ComponentActivity() {
@@ -11,7 +12,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            LoginPage()
+            ListaFirebaseScreen()
         }
     }
 }
