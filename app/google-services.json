@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "674771527247",
+    "project_id": "movilesb-4c3a2",
+    "storage_bucket": "movilesb-4c3a2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674771527247:android:36d804cd77f991e13bac3a",
+        "android_client_info": {
+          "package_name": "com.upn.emptyapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0a2kcgop-mA3XzBfD40aQYNaSxOpIRzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
