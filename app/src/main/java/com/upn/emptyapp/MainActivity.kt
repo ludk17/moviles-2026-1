@@ -4,6 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.upn.emptyapp.ui.screens.FirebaseFormScreen
 import com.upn.emptyapp.ui.screens.ListaFirebaseScreen
 import com.upn.emptyapp.ui.screens.pages.LoginPage
 
@@ -12,7 +16,19 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ListaFirebaseScreen()
+            val navController = rememberNavController()
+            NavHost(
+                navController = navController,
+                startDestination = "home" // Ruta inicial
+            ) {
+                composable("home") {
+                    ListaFirebaseScreen(navController)
+                }
+                composable("crear_estudiante") {
+                    FirebaseFormScreen(navController)
+                }
+            }
+
         }
     }
 }
