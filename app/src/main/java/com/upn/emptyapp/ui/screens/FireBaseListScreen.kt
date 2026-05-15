@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
@@ -26,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.upn.emptyapp.models.Estudiante
@@ -34,6 +36,7 @@ import com.upn.emptyapp.ui.theme.SanctuaryTheme
 @Composable
 fun FireBaseListScreen(navController: NavController) {
     val firestore = Firebase.firestore // esta linea es la instancia de base de datos;
+    var auth = Firebase.auth
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
@@ -81,6 +84,13 @@ fun FireBaseListScreen(navController: NavController) {
                         Text(item.nombre)
                     }
                 }
+            }
+
+            Button(onClick = {
+                auth.signOut()
+                navController.navigate("login")
+            }) {
+                Text("Cerrar Sesion")
             }
         }
     }

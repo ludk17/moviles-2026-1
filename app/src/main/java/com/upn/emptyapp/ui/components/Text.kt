@@ -6,18 +6,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun AppDisplay(
     text: String,
     modifier: Modifier = Modifier,
-    color: Color = MaterialTheme.colorScheme.onSurface
+    color: Color = MaterialTheme.colorScheme.onSurface,
+    textAlign: TextAlign = TextAlign.Start
 ) {
     Text(
         text = text,
         style = MaterialTheme.typography.displayLarge,
         color = color,
-        modifier = modifier
+        modifier = modifier,
+        textAlign = textAlign
     )
 }
 
@@ -39,13 +42,15 @@ fun AppHeadline(
 fun AppTitle(
     text: String,
     modifier: Modifier = Modifier,
-    color: Color = MaterialTheme.colorScheme.onSurface
+    color: Color = MaterialTheme.colorScheme.onSurface,
+    textAlign: TextAlign = TextAlign.Start
 ) {
     Text(
         text = text,
         style = MaterialTheme.typography.titleLarge,
         color = color,
-        modifier = modifier
+        modifier = modifier,
+        textAlign = textAlign
     )
 }
 
@@ -53,13 +58,15 @@ fun AppTitle(
 fun AppBody(
     text: String,
     modifier: Modifier = Modifier,
-    color: Color = MaterialTheme.colorScheme.onSurfaceVariant
+    color: Color = MaterialTheme.colorScheme.onSurfaceVariant,
+    textAlign: TextAlign = TextAlign.Start
 ) {
     Text(
         text = text,
         style = MaterialTheme.typography.bodyLarge,
         color = color,
-        modifier = modifier
+        modifier = modifier,
+        textAlign = textAlign
     )
 }
 

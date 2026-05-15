@@ -65,6 +65,10 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation(platform("com.google.firebase:firebase-bom:34.12.0"))
     implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+
+
 
 // Check for the latest version
 }
